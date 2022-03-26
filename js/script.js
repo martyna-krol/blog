@@ -77,8 +77,8 @@ function generateTitleLinks(){
 
     /* insert link into titleList */
 
-    titleList.innerHTML = titleList.innerHTML + linkHTML;
-    
+    titleList.insertAdjacentHTML('afterbegin', linkHTML);
+
   }
 }
 
