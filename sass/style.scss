@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Josefin+Sans&family=Yeseva+One&display=swap');
 
 /* Variables */
 
-$color-light: #fff;
-$color-dark: #444;
+$color-light: #dfe6e9;
+$color-medium: #b2bec3;
+$color-dark: #2d3436;
+$color-one: #6c5ce7;
+$color-two: #a29bfe;
 
-$font-logo: 'Sacramento', cursive;
-$font-header: 'Oswald', sans-serif;
-$font-text: 'Source Sans Pro', sans-serif;
+$font-logo: 'Indie Flower', cursive;
+$font-header: 'Yeseva One', cursive;
+$font-text: 'Josefin Sans', sans-serif;
 
 /* Global */
 
@@ -16,7 +19,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: $color-medium;
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
@@ -33,12 +36,21 @@ body {
   font-size: 22px;
   text-transform: uppercase;
   font-family: $font-header;
-  font-weight: 600;
+  font-weight: 500;
   span {
     text-transform: none;
     font-weight: 400;
     color: lighten($color-dark, 20%);
   }
+}
+
+a {
+  text-decoration: none;
+  color: $color-one;
+}
+
+a:hover {
+  color: $color-two;
 }
 
 /* Layout */
@@ -54,14 +66,16 @@ body {
 
 .posts {
   flex: 2 0 0;
+  position: relative;
 }
 
 .sidebar, .posts {
   background: $color-light;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid $color-dark;
+  border: 2px solid $color-one;
   border-radius: 5px;
+  height: 800px;
 }
 
 /* Logo */
@@ -102,9 +116,15 @@ body {
 /* Post */
 
 .post {
-  display: none;
+  display: block;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  position: absolute;
+  opacity: 0.0;
+  transition: all 1s;
   &.active {
-    display: block;
+    opacity: 1.0;
+    z-index: 5;
   }
 }
 
