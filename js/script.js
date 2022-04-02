@@ -41,7 +41,8 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -211,3 +212,43 @@ function addClickListenersToTags(){
 }
 
 addClickListenersToTags();
+
+
+function generateAuthors(){
+  /* find all articles */
+
+  const articles = document.querySelectorAll(optArticleSelector);
+
+  /* START LOOP: for every article: */
+
+  for (let article of articles){
+
+    /* find author wrapper */
+
+    const authorList = article.querySelector(optArticleAuthorSelector);
+
+    /* make html variable with empty string */
+
+    let html = '';
+
+    /* get author from data-author attribute */
+
+    const author = article.getAttribute('data-author');
+
+    /* generate HTML of the link */
+
+    const linkHTML = '<a href="#author-' + author + '">by ' + author + '</a>';
+
+    /* add generated code to html variable */
+
+    html = html + linkHTML;
+
+    /* insert HTML of all the links into the tags wrapper */
+
+    authorList.innerHTML = html;
+
+  /* END LOOP: for every article: */
+  }
+}
+
+generateAuthors();
