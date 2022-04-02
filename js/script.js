@@ -42,7 +42,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags.list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -89,6 +90,11 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 function generateTags(){
+
+  /* [NEW] create a new variable allTags with an empty array */
+
+  let allTags = [];
+
   /* find all articles */
 
   const articles = document.querySelectorAll(optArticleSelector);
@@ -125,6 +131,15 @@ function generateTags(){
 
       html = html + linkHTML;
 
+      /* [NEW] check if this link is NOT already in allTags */
+
+      if(allTags.indexOf(linkHTML) == -1){
+
+        /* [NEW] add generated code to allTags array */
+
+        allTags.push(linkHTML);
+      }
+
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
@@ -133,6 +148,14 @@ function generateTags(){
 
   /* END LOOP: for every article: */
   }
+
+  /* [NEW] find list of tags in right column */
+
+  const tagList = document.querySelector(optTagsListSelector);
+
+  /* [NEW] add html from allTags to tagList */
+
+  tagList.innerHTML = allTags.join(' ');
 }
 
 generateTags();
@@ -166,7 +189,7 @@ function tagClickHandler(event){
 
     tagLink.classList.remove('active');
 
-  /* END LOOP: for each active tag link */
+    /* END LOOP: for each active tag link */
 
   }
 
@@ -182,7 +205,7 @@ function tagClickHandler(event){
 
     tagHref.classList.add('active');
 
-  /* END LOOP: for each found tag link */
+    /* END LOOP: for each found tag link */
 
   }
 
@@ -205,7 +228,7 @@ function addClickListenersToTags(){
 
     tagLink.addEventListener('click', tagClickHandler);
 
-  /* END LOOP: for each link */
+    /* END LOOP: for each link */
 
   }
 
@@ -282,7 +305,7 @@ function authorClickHandler(event){
 
     authorLink.classList.remove('active');
 
-  /* END LOOP: for each active author link */
+    /* END LOOP: for each active author link */
 
   }
 
@@ -298,7 +321,7 @@ function authorClickHandler(event){
 
     authorHref.classList.add('active');
 
-  /* END LOOP: for each found author link */
+    /* END LOOP: for each found author link */
 
   }
 
@@ -321,7 +344,7 @@ function addClickListenersToAuthors(){
 
     authorLink.addEventListener('click', authorClickHandler);
 
-  /* END LOOP: for each link */
+    /* END LOOP: for each link */
 
   }
 
