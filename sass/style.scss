@@ -12,6 +12,12 @@ $font-logo: 'Indie Flower', cursive;
 $font-header: 'Yeseva One', cursive;
 $font-text: 'Josefin Sans', sans-serif;
 
+$font-size-one: x-small;
+$font-size-two: small;
+$font-size-three: medium;
+$font-size-four: large;
+$font-size-five: x-large;
+
 /* Global */
 
 *, *::before, *::after {
@@ -51,6 +57,26 @@ a {
 
 a:hover {
   color: $color-two;
+}
+
+.tag-size-1 {
+  font-size: $font-size-one;
+}
+
+.tag-size-2 {
+  font-size: $font-size-two;
+}
+
+.tag-size-3 {
+  font-size: $font-size-three;
+}
+
+.tag-size-4 {
+  font-size: $font-size-four;
+}
+
+.tag-size-5 {
+  font-size: $font-size-five;
 }
 
 /* Layout */
