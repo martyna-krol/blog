@@ -45,7 +45,8 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.authors.list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -277,6 +278,11 @@ addClickListenersToTags();
 
 
 function generateAuthors(){
+
+  /* [NEW] create a new variable allAuthors with an empty object */
+
+  let allAuthors = {};
+
   /* find all articles */
 
   const articles = document.querySelectorAll(optArticleSelector);
@@ -305,12 +311,45 @@ function generateAuthors(){
 
     html = html + linkHTML;
 
+    /* [NEW] check if this link is NOT already in allAuthors */
+
+    if(!allAuthors.hasOwnProperty(author)){
+
+      /* [NEW] add tag to allTags object */
+
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;
+    }
+
     /* insert HTML of all the links into the tags wrapper */
 
     authorList.innerHTML = html;
 
   /* END LOOP: for every article: */
   }
+
+  /* [NEW] find list of authors in right column */
+
+  const authorList = document.querySelector(optAuthorsListSelector);
+
+  /* [NEW] create variable for all links HTML code */
+
+  let allAuthorsHTML = '';
+
+  /* [NEW] START LOOP: for each author in all Authors: */
+
+  for(let author in allAuthors){
+
+    /* [NEW] generate code of a link and add it to allAuthorsHTML */
+
+    allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + ' </a>(' + allAuthors[author] + ')</li> ';
+  }
+  /* [NEW] END LOOP: for each tag in allAuthors: */
+
+  /* [NEW] add html from allAuthorsHTML to authorsList */
+
+  authorList.innerHTML = allAuthorsHTML;
 }
 
 generateAuthors();
@@ -373,7 +412,7 @@ function authorClickHandler(event){
 function addClickListenersToAuthors(){
   /* find all links to authors */
 
-  const authorLinks = document.querySelectorAll('.post-author a');
+  const authorLinks = document.querySelectorAll('.authors a');
 
   /* START LOOP: for each link */
 
